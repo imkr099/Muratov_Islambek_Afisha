@@ -19,12 +19,6 @@ class ReviewSerializer(serializers.ModelSerializer):
         model = Review
         fields = '__all__'
 
-    # def get_movie_list(self, movie_id):
-    #     l = []
-    #     for movie in movie_id.title.all():
-    #         l.append(movie.title)
-    #     return l
-
 
 class MovieSerializer(serializers.ModelSerializer):
     reviews = ReviewSerializer(many=True, read_only=True)
