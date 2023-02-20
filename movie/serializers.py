@@ -3,20 +3,32 @@ from .models import Director, Movie, Review
 
 
 class DirectorSerializer(serializers.ModelSerializer):
+    movie_count = serializers.SerializerMethodField()
 
     class Meta:
         model = Director
-        fields = '__all__'
+        fields = 'id name movie_count'.split()
 
-
-class MovieSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Movie
-        fields = 'id title description duration director'.split()
+    def get_movie_count(self, director):
+        return director.movie_set.count()
 
 
 class ReviewSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Review
-        fields = 'id text'.split()
+        fields = '__all__'
+
+    # def get_movie_list(self, movie_id):
+    #     l = []
+    #     for movie in movie_id.title.all():
+    #         l.append(movie.title)
+    #     return l
+
+
+class MovieSerializer(serializers.ModelSerializer):
+    reviews = ReviewSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Movie
+        fields = '__all__'
