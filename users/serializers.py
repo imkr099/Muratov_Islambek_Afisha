@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from rest_framework.exceptions import ValidationError
+from users.models import ConfirmCode
 
 
 class UserLoginSerializer(serializers.Serializer):
@@ -16,3 +17,9 @@ class UserValidationSerializer(UserLoginSerializer):
         except User.DoesNotExist:
             return username
         raise ValidationError('User already exists!')
+
+
+class ConfirmCodeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ConfirmCode
+        fields = ('code',)
