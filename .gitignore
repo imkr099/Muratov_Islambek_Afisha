@@ -1,0 +1,8 @@
+.idea
+db.sqlite3
+Afisha/__pycache__
+movie/__pycache__
+movie/migrations/__pycache__
+__pycache__
+.env
+static
