@@ -1,0 +1,26 @@
+version: "3"
+services:
+  database_service:
+    image: "postgres:12"
+    hostname: afisha_db_host
+    environment:
+      - POSTGRES_DB=afisha_db
+      - POSTGRES_USER=afisha_user
+      - POSTGRES_PASSWORD=123456
+    ports:
+      - "5434:5432"
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+
+  afisha_docker:
+    build:
+      context: .
+    env_file:
+      - .env
+    command: sh -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - "3000:8000"
+    depends_on:
+      - database_service
+volumes:
+  dist-postgres-database:
