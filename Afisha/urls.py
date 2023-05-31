@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from movie import views
 from users import views as user_views
+from . import swagger
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,3 +33,4 @@ urlpatterns = [
     path('api/v1/users/confirm/', user_views.ConfirmAPIView.as_view())
 ]
 
+urlpatterns += swagger.urlpatterns
