@@ -17,7 +17,6 @@ from django.contrib import admin
 from django.urls import path
 from movie import views
 from users import views as user_views
-from . import swagger
 
 urlpatterns = [
     path('admin/', admin.site.urls),
