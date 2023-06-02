@@ -33,4 +33,3 @@ urlpatterns = [
     path('api/v1/users/confirm/', user_views.ConfirmAPIView.as_view())
 ]
 
-urlpatterns += swagger.urlpatterns
