@@ -2,6 +2,7 @@ version: "3"
 services:
   database_service:
     image: "postgres:12"
+    restart: always
     hostname: afisha_db_host
     environment:
       - POSTGRES_DB=afisha_db
